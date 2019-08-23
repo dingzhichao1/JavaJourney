@@ -1,13 +1,13 @@
 package com.java.learn.data.struct;
 
 /**
- * @ClassName: SingleLink
+ * @ClassName: SingleLinkList
  * @Description: 单链表操作类
  * @Author: DZC
  * @CreateDate: 2019/8/22 15:53
  * @Version: 1.0
  */
-public class SingleLink {
+public class SingleLinkList {
     /**
      * 链表是由节点和指针所构成的数据结构
      * 节点需要有两个元素：自身存储的数据和标明下一个或上一个的元素调的地址值
@@ -60,7 +60,7 @@ public class SingleLink {
 
 
     //遍历链表，通过索引值找到相应的元素
-    public Node whileSingleLink(int index) {
+    public Node whileSingleLinkList(int index) {
         Node node = null;
         if (index < 0 || index > length - 1) {
             throw new IndexOutOfBoundsException();
@@ -80,7 +80,7 @@ public class SingleLink {
     //通过index获取元素数据
     public <T> T get(int index) {
         T t = null;
-        Node<T> node = whileSingleLink(index);
+        Node<T> node = whileSingleLinkList(index);
         if (node != null) {
             t = node.getT();
         }
@@ -122,7 +122,7 @@ public class SingleLink {
     }
 
     /**
-     * 重写toString方法，将SingleLink以更加直观的形式进行展现
+     * 重写toString方法，将SingleLinkList以更加直观的形式进行展现
      * @return
      */
     @Override
@@ -144,14 +144,14 @@ public class SingleLink {
 
 
     public static void main(String[] args) {
-        SingleLink singleLink = new SingleLink();
-        singleLink.insertInToTail(1);
-        singleLink.insertInToTail(2);
-        singleLink.insertInToTail(3);
-        singleLink.insertInToTail(4);
-        singleLink.remove(2);
-        System.out.println(singleLink);
-        System.out.println(singleLink.size());
+        SingleLinkList SingleLinkList = new SingleLinkList();
+        SingleLinkList.insertInToTail(1);
+        SingleLinkList.insertInToTail(2);
+        SingleLinkList.insertInToTail(3);
+        SingleLinkList.insertInToTail(4);
+        SingleLinkList.remove(2);
+        System.out.println(SingleLinkList);
+        System.out.println(SingleLinkList.size());
     }
 
 
