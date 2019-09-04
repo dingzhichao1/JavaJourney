@@ -7,9 +7,9 @@ package com.java.learn.data.struct;
  */
 public  class Node <T>{
 
-    private T t;
+    private T t;  //Node中的元素
 
-    private Node next;
+    private Node next; //Node节点
 
     public T getT() {
         return t;
