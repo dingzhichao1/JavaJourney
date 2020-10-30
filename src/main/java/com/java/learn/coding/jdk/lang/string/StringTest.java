@@ -1,4 +1,4 @@
-package com.java.learn.coding.jdk.string;
+package com.java.learn.coding.jdk.lang.string;
 
 /**
  * Description：字符串研究
@@ -8,10 +8,14 @@ package com.java.learn.coding.jdk.string;
  * @date 2020/9/29 15:51
  */
 public class StringTest {
+    /**
+     * 通过jsonp 进行反编译得到源码和字节码中间解释代码
+     *
+     * @param args
+     */
+
     public static void main(String[] args) {
         String aaa="aaa";
-
-
         String bbb="aaa";
         String aaaNew = new String("aaa");
         String bbbNew = new String("aaa");
@@ -28,9 +32,9 @@ public class StringTest {
 
 }
 /**
- * public class com.java.learn.coding.jdk.string.StringTest {
+ * public class com.java.learn.coding.jdk.lang.string.StringTest {
  *
- *   public com.java.learn.coding.jdk.string.StringTest();
+ *   public com.java.learn.coding.jdk.lang.string.StringTest();
  *     Code:
  *        0: aload_0
  *        1: invokespecial #1                  // Method java/lang/Object."<init>":()V
@@ -38,7 +42,7 @@ public class StringTest {
  *
  *   public static void main(java.lang.String[]);
  *     Code:
- *        0: ldc           #2                  // String aaa   常量池中的常量值（int, float, string reference, object reference）入栈。
+ *        0: ldc           #2                  // String aaa   常量池中的常量值（int, float, lang reference, object reference）入栈。
  *        2: astore_1                                          将栈顶引用类型值保存到局部变量1中。
  *        3: ldc           #2                  // String aaa
  *        5: astore_2

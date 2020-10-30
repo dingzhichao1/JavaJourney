@@ -1,6 +1,4 @@
-package com.java.learn.coding.jdk.map;
-
-import org.openjdk.jol.util.MathUtil;
+package com.java.learn.coding.jdk.collection.map;
 
 import java.util.HashMap;
 import java.util.Map;

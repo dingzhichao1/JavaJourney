@@ -8,7 +8,7 @@ package com.java.learn.algorithm.string;
 public class ReverseString {
     public static void main(String[] args) {
         String  str ="abcdefghi";
-        //string s = methodOne(str);
+        //lang s = methodOne(str);
         String s = methodTwo(str);
         //System.out.println(s);
     }
@@ -55,8 +55,8 @@ public class ReverseString {
     }
 
 
-//    public static  string  methodThree(string str){
-//        string[] split = str.split("");
+//    public static  lang  methodThree(lang str){
+//        lang[] split = str.split("");
 //
 //
 //    }

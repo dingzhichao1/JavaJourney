@@ -28,6 +28,9 @@ public class JavaObjectLayout {
 
         System.out.println(ClassLayout.parseInstance(user).toPrintable());
 
+
+
+
     }
 
 
