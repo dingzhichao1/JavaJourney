@@ -1,6 +1,10 @@
 package com.java.learn.coding.jdk.collection.list;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Description：
@@ -23,6 +27,16 @@ public class ListTest01 {
          */
 
         ArrayList<Object> objects = new ArrayList<>();
+
+        List<Integer> list = Collections.unmodifiableList(Stream.of(1, 2, 3, 4, 5, 6, 7,8,9,10,11,12).collect(Collectors.toList()));
+        list.stream().forEach(p->{
+            System.out.println("functioninterface:"+Thread.currentThread().getName());
+        });
+
+        list.parallelStream().forEach(p->{
+            System.out.println("parallelStream:"+Thread.currentThread().getName());
+        });
     }
+
 
 }

@@ -9,6 +9,9 @@ package com.java.learn.coding.jdk.collection.set;
  */
 
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 /**
@@ -28,6 +31,19 @@ public class TreeSetTest01 {
         product.setOrder(1);
         treeSet.add(product);
 
+        //TreeSet是TreeMap的key，所以看TreeMap的源码就可以了
+
+        //HashSet的底层是基于HashMap的，TreeSet的底层是基于TreeMap的。
+        Set<Object> hashSet = new HashSet<>();
+        hashSet.add(product);
+        
+        
+        //LinkHashSet 
+        LinkedHashSet<Product> linkedHashSet = new LinkedHashSet<>();
+        linkedHashSet.add(product);
+
+        //总结：所有的Set(HashSet、LinkedHashSet、TreeSet)都是基于对应的Map来实现的，都是将元素存储在
+        //Map的key中
     }
 
 

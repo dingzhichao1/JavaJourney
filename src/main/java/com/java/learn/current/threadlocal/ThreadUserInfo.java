@@ -1,7 +1,5 @@
 package com.java.learn.current.threadlocal;
 
-import lombok.Data;
-
 /**
  * Description：
  *
@@ -9,7 +7,6 @@ import lombok.Data;
  * @version 1.0
  * @date 2020/11/27 13:14
  */
-@Data
 public class ThreadUserInfo extends ThreadLocal {
 
     private String name;
@@ -21,5 +18,3 @@ public class ThreadUserInfo extends ThreadLocal {
 
 }
 
-
-class

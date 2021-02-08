@@ -10,10 +10,6 @@ package com.java.learn.lamda;
 public class LambdaTest01 {
 
     public static void main(String[] args) {
-        ()->{
-            System.out.println("this is the first function by lambda");
-
-        }
 
 
 
