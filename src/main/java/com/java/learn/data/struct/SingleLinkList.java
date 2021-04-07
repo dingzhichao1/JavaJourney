@@ -1,5 +1,9 @@
 package com.java.learn.data.struct;
 
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @ClassName: SingleLinkList
  * @Description: 单链表操作类
@@ -18,29 +22,83 @@ public class SingleLinkList {
      */
 
 
-    //链表的头
+    /**
+     * 链表头
+     */
     private Node head = null;
 
-    //链表的尾
+
+    private static ReentrantLock  lock=new ReentrantLock();
+
+    /**
+     * 链表尾
+     */
     private Node tail = null;
 
+    /**
+     * 链表长度
+     */
+    private volatile int length = 0;
 
-    private int length = 0;
 
-    //头插法
+    private AtomicInteger  size= new AtomicInteger();
+
+    /**
+     * 头插法
+     * 头插法的优点：能够避免尾部遍历，每次插入不需要遍历元素插入效率高
+     * 头插法的缺点：插入元素的顺序与之前相反
+     *
+     * @param t
+     * @param <T>
+     */
     public <T> void insertInToHead(T t) {
         if (head == null) {
             head = new Node(t);
             length++;
-            return;
+            size.incrementAndGet();
         } else {
             Node temp = head;
             head = new Node(t).setNext(temp);
             length++;
+            size.incrementAndGet();
         }
     }
 
-    //尾插法
+
+    /**
+     * 通过synchronized锁来实现头部插入
+     * @param t
+     * @param <T>
+     */
+    public synchronized <T> void insertInToHeadSync(T t){
+        insertInToHead(t);
+    }
+
+
+    public  <T> void  insertInToHeadLock(T t){
+        lock.lock();
+        try {
+            insertInToHead(t);
+        }catch (Exception e){
+            e.printStackTrace();
+            try {
+                lock.lockInterruptibly();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }finally {
+            lock.unlock();
+        }
+
+
+    }
+
+
+    /**
+     * 尾插法
+     * @param t
+     * @param <T>
+     */
     public <T> void insertInToTail(T t) {
         Node node = new Node(t);
         if (head == null) {
@@ -55,7 +113,10 @@ public class SingleLinkList {
         }
     }
 
-    //计算长度
+    /**
+     * 获取列表长度
+     * @return
+     */
     public int size() {
         return length;
     }
@@ -146,14 +207,66 @@ public class SingleLinkList {
 
 
     public static void main(String[] args) {
+//        SingleLinkList SingleLinkList = new SingleLinkList();
+//        SingleLinkList.insertInToTail(1);
+//        SingleLinkList.insertInToTail(2);
+//        SingleLinkList.insertInToTail(3);
+//        SingleLinkList.insertInToTail(4);
+//        SingleLinkList.remove(2);
+//        System.out.println(SingleLinkList);
+//        System.out.println(SingleLinkList.size());
+        test1();
+    }
+
+    /**
+     *多线程的情况下头插入是否会造成冲突
+     *
+     * 经过测试：多线程并发的情况下，头部插入会造成元素的丢失
+     *
+     *  头部插入
+     *  三个线程加锁：百万级插入  最低450+     最高600+
+     *  三个线程不加锁：百万级插入   290+      最高347+
+     *  500万  ReentranntLock  5763   5819
+     *
+     *  500万  synchroined     6759  5722    5693  5690
+     */
+    public static void test1(){
+        long start = System.currentTimeMillis();
+
         SingleLinkList SingleLinkList = new SingleLinkList();
-        SingleLinkList.insertInToTail(1);
-        SingleLinkList.insertInToTail(2);
-        SingleLinkList.insertInToTail(3);
-        SingleLinkList.insertInToTail(4);
-        SingleLinkList.remove(2);
-        System.out.println(SingleLinkList);
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < 5000000; i++) {
+                SingleLinkList.insertInToHead(1);
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 5000000; i++) {
+                SingleLinkList.insertInToHead(2);
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            for (int i = 0; i < 5000000; i++) {
+                SingleLinkList.insertInToHead(3);
+            }
+        });
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(end-start);
         System.out.println(SingleLinkList.size());
+        System.out.println(SingleLinkList.size);
     }
 
 

@@ -2,7 +2,6 @@ package com.java.learn.test;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Description：引用测试
@@ -16,10 +15,6 @@ public class ReferenceTest {
         /**
          * 测试目的：java中到底是引用传递还是值传递？对于基本数据类型来说是值传递，对形参值的修改不会改变实参，那么引用
          * 对象呢？
-         *
-         *
-         *
-         *
          */
         User user = new User().setAge(18).setHigh(165).setName("宋大胆");
         System.out.println(user);
@@ -35,7 +30,7 @@ public class ReferenceTest {
          * User(age=88, name=宋傻子, high=175)
          *
          * 结论：
-         * java还真是值传递，即使是引用对象传递，传递的也是
+         * java还真是值传递，即使是引用对象传递，传递的也是yinyong
          *
          *
          */
