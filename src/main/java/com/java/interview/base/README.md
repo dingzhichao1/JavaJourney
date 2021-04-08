@@ -65,7 +65,14 @@
     4、应用层   会话+表示+应用
     
 ####TCP协议
+######特点
+    
 ######三握手和四次挥手
+
+#######为什么要等到两个最大报文生存时间再关闭
+    1、保证全双工连接能够安全关闭 避免服务端没有收到ACK
+    2、保证这次连接的重复数据段从网络消失
+    
 ######TCP 的报文状态标志与链接状态
 ######Nagel算法和 ACK 延迟
 ######Keepalive
@@ -130,6 +137,9 @@
 ####类加载
 
 ####JVM内存模型
+#####
+    1、虚拟机栈  执行方法时将方法中的信息保存至虚拟机栈中
+    2、
 
 ####JMM java内存模型
 ####JVM性能优化
@@ -163,17 +173,25 @@
 ####
 
 
-####Spring
-#####Spring Framework
-######轻量级 一站式 开源框架 减耦合
-######核心：IOC  AOP
-######核心：IOC  AOP
+###Spring
+####Spring Framework
+#####轻量级 一站式 开源框架 减耦合
+#####核心：IOC  AOP
+######IOC、DI
+
+#####核心接口
+######BeanFactory  Bean的注册和加载
 
 
-#####Spring Boot
-######简化应用和服务的创建、开发和部署 简化配置 内置服务器
-######核心思想：约定大于配置
-######SpringBootDependece 管理依赖的版本
+
+######ApplicationContext
+######ApplicationContext
+######ApplicationContext
+
+####Spring Boot
+#####简化应用和服务的创建、开发和部署 简化配置 内置服务器
+#####核心思想：约定大于配置
+#####Spring-Boot-Dependencies 管理依赖的版本,建立起SpringBoot版本与其它依赖的版本关系
 
 #####Spring Data
 ######数据访问和操作
