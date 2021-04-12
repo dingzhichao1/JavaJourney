@@ -1,5 +1,7 @@
 package com.java.interview.base;
 
+import java.lang.annotation.Annotation;
+
 /**
  * Description：
  *
@@ -23,7 +25,9 @@ public class Base1 {
      *
      *
      */
-
+    public static void main(String[] args) {
+        Annotation[] annotations = Base1.class.getAnnotations();
+    }
 
 
 
