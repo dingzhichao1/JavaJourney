@@ -32,3 +32,20 @@ public class Base1 {
 
 
 }
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int len=nums.length;
+        if(len>=2&&len<=1000){
+            for(int i=0;i<len-1;i++){
+                int one=nums[i];
+                for(int j=i+1;j<len;j++){
+                    if(nums[i]+nums[j]==target){
+
+
+                    }
+                }
+            }
+        }
+        return null;
+    }
+}
