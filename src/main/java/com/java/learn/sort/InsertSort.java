@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class InsertSort {
     public static void main(String[] args) {
-        int[] ints = ArrayUtils.generateRamdomArray(300);
+        int[] ints = ArrayUtils.generateRandomArray(300);
         insertSort(ints);
         ArrayUtils.printArray(ints);
     }

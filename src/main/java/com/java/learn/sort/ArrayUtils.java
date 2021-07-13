@@ -20,6 +20,7 @@ public class ArrayUtils {
                 sb.append(",");
             }
         }
+        sb.append("]");
         System.out.println(sb.toString());
     }
 
@@ -29,7 +30,7 @@ public class ArrayUtils {
      * @param length
      * @return
      */
-    public static int []  generateRamdomArray(int length){
+    public static int []  generateRandomArray(int length){
        int [] intArr =  new int[length];
         Random random = new Random();
         for (int i = 0; i <length ; i++) {
