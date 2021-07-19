@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * Description：
+ * Description：动态代理
  *
  * @author zhichao.ding
  * @version 1.0
@@ -12,13 +12,16 @@ import java.lang.reflect.Method;
  */
 public class TestProxy<T> implements InvocationHandler {
 
-    private TestTarget testTarget;
+    private T target;
+
+    public TestProxy(T target){
+        this.target=target;
+    }
+
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
         System.out.println("Test Proxy");
-
-        return null;
+       return method.invoke(target,args);
     }
 }

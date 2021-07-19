@@ -25,7 +25,7 @@ public class ChineseBuildHouse extends BuildHouseTemplate {
     public static void main(String[] args) {
         BuildHouseTemplate buildHouseTemplate = new ChineseBuildHouse();
 
-        buildHouseTemplate.bulidHouse();
+        buildHouseTemplate.buildHouse();
 
         BuildHouseTemplate.DecorateHouse decorateHouse = new DecorateHouse() {
             @Override

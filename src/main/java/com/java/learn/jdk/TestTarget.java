@@ -12,6 +12,5 @@ public class TestTarget implements  TestInterface{
     @Override
     public void test(){
         System.out.println("Test Target");
-
     }
 }

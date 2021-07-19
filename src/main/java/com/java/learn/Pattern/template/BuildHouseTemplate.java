@@ -7,7 +7,7 @@ package com.java.learn.Pattern.template;
  */
 public abstract class BuildHouseTemplate {
 
-    public void bulidHouse(){
+    public void buildHouse(){
         foundation();
         buildWall();
         installDoor ();
