@@ -1,5 +1,7 @@
 package com.java.learn.algorithm.array;
 
+import com.java.learn.sort.ArrayUtils;
+
 import java.util.*;
 
 /**
@@ -23,7 +25,11 @@ public class RemoveElement {
         int [] arr2={1,2,3,45,53,46,4,23,4};
         //methodTwo(arr1,arr2);
         //methodThree(arr1,arr2);
-        methodFour(arr1,arr2);
+        //methodFour(arr1,arr2);
+
+        int[] test = test(arr1, arr2);
+
+        ArrayUtils.printArray(test);
     }
 
     /**
@@ -190,5 +196,39 @@ public class RemoveElement {
     }
 
 
+    /**
+     * 两个数组如果用传统的遍历方式，需要进行n*n次遍历，这是一个时间复杂度可以优化的点
+     *
+     * 另外就是数组移除后，频繁的扩容、数组复制也会消耗资源，如何减少数组扩容的次数这也
+     * 是一个优化的点
+     *
+     * 可以通过移动元素的位置，是元素的一边为不重复的元素，另一边为重复的元素
+     *
+     *
+     *
+     *
+     * @param arr1
+     * @param arr2
+     * @return
+     */
+    private static int [] test(int [] arr1,int [] arr2){
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < arr1.length; i++) {
+            set.add(arr1[i]);
+        }
+        int mark=-1;
+        for (int i = 0; i < arr2.length; i++) {
+            if(!set.contains(arr2[i])){
+                arr2[++mark]=arr2[i];
+            }
+        }
+        if(mark!=-1){
+            int[] arr = new int[mark+1];
+            System.arraycopy(arr2,0,arr,0,mark+1);
+            return arr;
+        }
+        return arr2;
+
+    }
 
 }
