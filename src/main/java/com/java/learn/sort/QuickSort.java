@@ -1,68 +1,104 @@
 package com.java.learn.sort;
 
 /**
- * Description：快速排序算法
- *
- * @author zhichao.ding
- * @version 1.0
- * @date 2021/7/13 9:11
+ * @Auther: DingZhichao
+ * @Date: 2021/7/6 23:10
+ * @Description: 快速排序
+ * <p>
+ * 核心思想：选择一个元素作为标准元素，设置左右两个指针，通过指针的移动
+ * 如果两个指针都不移动就相互交换，如果两个指针重回就交换元素
  */
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] array = ArrayUtils.generateRandomArray(20);
-        ArrayUtils.printArray(array);
-        quickSort(array);
-        ArrayUtils.printArray(array);
+        int[] arr = ArrayUtils.generateRandomArray(20);
+        ArrayUtils.printArray(arr);
+        sort0(arr);
+        ArrayUtils.printArray(arr);
     }
 
-
-    public static void quickSort(int []arr){
-        if(arr==null){
-            throw new RuntimeException("");
-        }
-        quickSort(arr,0,arr.length-1);
-
-    }
-
-    private static void quickSort(int [] arr,int start,int end){
-        //
-        int partition = partition(arr, start, end);
-        if(start<partition-1){
-            quickSort(arr,start,partition-1);
-        }
-        if(end>partition+1){
-            quickSort(arr,partition+1,end);
-        }
-
+    /**
+     * 双边递归法
+     * 1、设置left  和right两个索引
+     * 2、通过递归方法来实现
+     *
+     * @param arr
+     */
+    public static void sort0(int[] arr) {
+        //1、判断数组为空
+        //2、设置左右索引的起始值
+        //设置标准元素
+        recurseQuickSort(arr,0,arr.length-1);
 
     }
 
+    /**
+     *
+     * 快速排序递归方法
+     * @param arr
+     * @param startIndex
+     * @param endIndex
+     */
+    private static void recurseQuickSort(int[] arr, int startIndex, int endIndex) {
+        //进行第一轮排序，并返回第一轮排序后的索引值，作为递归的的起始的分界限
+        int pivotIndex = getPivotIndex(arr, startIndex, endIndex);
+        if(startIndex<pivotIndex-1){
+            recurseQuickSort(arr,startIndex,pivotIndex-1);
+        }
 
-    private static int partition(int [] arr,int start ,int end){
-        //选择元素作为标准元素
-        int target = arr[end];
-        int left=start;
-        int right=end;
-        while (left<right){
+        if(pivotIndex+1<endIndex){
+            recurseQuickSort(arr,pivotIndex+1,endIndex);
+        }
 
-            //!!!假设一条中位线将数组一分为二，如果以左边的元素为标准元素，必须对右边先进行遍历，反之亦然
-            while (left<right&&arr[left]<=target){
-                left++;
-            }
-            while (left<right&&arr[right]>=target){
+    }
+
+
+    /**
+     * 获取支点的索引
+     *
+     * @param arr
+     * @param startIndex
+     * @param endIndex
+     * @return
+     */
+    private static int getPivotIndex(int[] arr, int startIndex, int endIndex) {
+        //保存支持点（中间轴的点），作为标准（任选一个元素），一般来说以第一个元素作为标准
+        //注意：如果选中的元素是极值那么会导致最坏的情况，这时时间复杂度由原来的O(log n)变成
+        //了O(n^2)
+        int pivot = arr[startIndex];
+        int left = startIndex;
+        int right = endIndex;
+
+        //当left小于right时才不断移动指针/或者交换元素
+        while (left < right) {
+
+            //注意在移动指针必须保证，left<right以防出现左右交错
+            //右边移动指针
+            //!!!如果以第一个元素作为标准元素，需要先移动右边的指针
+            while (left < right && arr[right] >= pivot) {
+                //右指针向左移动
                 right--;
             }
 
-            if(left<right){
-                int temp=arr[left];
-                arr[left]=arr[right];
-                arr[right]=temp;
+            while (left < right && arr[left] <= pivot) {
+                left++;
             }
+
+            //出现了右边的小于标准值，左边大于标准值，这是需要交换元素
+            if (left < right) {
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+            }
+
+
         }
-        int temp=arr[left];
-        arr[left]=arr[end];
-        arr[end]=temp;
+        //跳出循环后，此时left=right
+        //当左右的指针相等时，说明遍历到了支撑点，交换位置
+        int temp = arr[left];
+        arr[left] =arr[startIndex] ;  //此时left=right
+        arr[startIndex] = temp;
         return left;
     }
+
 }
