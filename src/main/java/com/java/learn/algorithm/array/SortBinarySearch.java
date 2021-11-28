@@ -1,6 +1,6 @@
 package com.java.learn.algorithm.array;
 
-import com.java.learn.sort.ArrayUtils;
+import com.java.learn.algorithm.sort.ArrayUtils;
 
 /**
  * Description：排序二分法查找

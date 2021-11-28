@@ -1,6 +1,6 @@
 package com.java.learn.algorithm.array;
 
-import com.java.learn.sort.ArrayUtils;
+import com.java.learn.algorithm.sort.ArrayUtils;
 
 /**
  * @Auther: DingZhichao
